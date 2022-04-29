@@ -4,3 +4,5 @@ clear:
 	rm classc
 vrun:
 	valgrind --leak-check=full -s ./classc
+grun:
+	gdb classc
