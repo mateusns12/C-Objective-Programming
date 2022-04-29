@@ -1,0 +1,6 @@
+*.tcl
+CMaeCache.txt
+*.cmake
+Testing
+CMakeFiles
+classc
