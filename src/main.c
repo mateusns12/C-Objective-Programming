@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define new(T) (T*)malloc(sizeof(T));
+
 typedef struct entity {
   float alter;
   char *ymar;
@@ -17,16 +19,12 @@ void print(Entity *self) {
 
 void setAlterfunc(Entity *self, float alter) { self->alter = alter; }
 
-void setYmarfunc(Entity *self, char ymar[]) {
-  // free(self->ymar);
-  // self->ymar = malloc(sizeof(char));
-  strcpy(self->ymar, ymar);
-}
+void setYmarfunc(Entity *self, char ymar[]) { strcpy(self->ymar, ymar); }
 
-Entity *newEntity(float alter, char ymar[]) {
-  Entity *self = (Entity *)malloc(sizeof(Entity));
+Entity * newEntity(float alter, char ymar[]) {
+  Entity * self = new(Entity);
   self->alter = alter;
-  self->ymar = malloc(sizeof(char));
+  self->ymar = new(char);
   strcpy(self->ymar, ymar);
   self->show = &print;
   self->setAlter = &setAlterfunc;
