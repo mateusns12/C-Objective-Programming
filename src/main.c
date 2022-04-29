@@ -4,6 +4,7 @@
 #include <string.h>
 
 #define new(T) (T*)malloc(sizeof(T));
+#define newC(T) (T*)calloc(1,sizeof(T));
 
 typedef struct entity {
   float alter;
@@ -22,9 +23,10 @@ void setAlterfunc(Entity *self, float alter) { self->alter = alter; }
 void setYmarfunc(Entity *self, char ymar[]) { strcpy(self->ymar, ymar); }
 
 Entity * newEntity(float alter, char ymar[]) {
-  Entity * self = new(Entity);
+  //Entity * self = new(Entity);
+  Entity * self = newC(Entity);
   self->alter = alter;
-  self->ymar = new(char);
+  self->ymar = newC(char);
   strcpy(self->ymar, ymar);
   self->show = &print;
   self->setAlter = &setAlterfunc;
