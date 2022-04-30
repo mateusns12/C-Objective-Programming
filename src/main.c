@@ -3,8 +3,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define new(T) (T*)malloc(sizeof(T));
-#define newC(T) (T*)calloc(1,sizeof(T));
+#define new (T)(T *) malloc(sizeof(T));
+#define newC(T) (T *)calloc(1, sizeof(T));
 
 typedef struct entity {
   float alter;
@@ -20,14 +20,24 @@ void print(Entity *self) {
 
 void setAlterfunc(Entity *self, float alter) { self->alter = alter; }
 
-void setYmarfunc(Entity *self, char ymar[]) { strcpy(self->ymar, ymar); }
+void setYmarfunc(Entity *self, char ymar[]) {
+  // free(self->ymar);
+  // self->ymar = (char *)malloc((strlen(ymar) + 1) * sizeof(char));
+  //  strcpy(self->ymar, ymar);
+  self->ymar = ymar;
+}
 
-Entity * newEntity(float alter, char ymar[]) {
-  //Entity * self = new(Entity);
-  Entity * self = newC(Entity);
+Entity *newEntity(float alter, char ymar[]) {
+  // Entity * self = new(Entity);
+  Entity *self = newC(Entity);
   self->alter = alter;
-  self->ymar = newC(char);
-  strcpy(self->ymar, ymar);
+  // self->ymar = newC(char);
+  // strcat(ymar, "\0");
+  // self->ymar = (char *)malloc((strlen(ymar) + 1) * sizeof(char));
+  // strncpy(self->ymar, ymar, sizeof(&self->ymar));
+  // strcat(ymar, "\0");
+  // strcpy(self->ymar, ymar);
+  self->ymar = ymar;
   self->show = &print;
   self->setAlter = &setAlterfunc;
   self->setYmar = &setYmarfunc;
@@ -43,7 +53,7 @@ int main() {
 
   rynir->show(rynir);
 
-  free(rynir->ymar);
+  // free(rynir->ymar);
   free(rynir);
 
   return 0;
