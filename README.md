@@ -10,10 +10,28 @@ This program will create a struct type Entity, calling the creation by a constru
 
 # Notes
 
-- Valgrid shows no memory leaks, but 44 errors of read, write operations on dynamic allocated values. 
+- Using calloc to allocate Entity.
+- Dynamic allocation for char * removed, since there is no need to be dynamic.
+- **(Fixed)** Valgrid shows no memory leaks, but 44 errors of read, write operations on dynamic allocated values.
+
 
 # To-do
 
 - [ ] Simulate private members.
-- [ ] Fix errors and undefined behavior.
+- [X] Fix errors and undefined behavior.
+- [ ] Implement Interface;
+
+# Valgrind Analysis
+
+````
+==1634==
+==1634== HEAP SUMMARY:
+==1634==     in use at exit: 0 bytes in 0 blocks
+==1634==   total heap usage: 2 allocs, 2 frees, 1,064 bytes allocated
+==1634==
+==1634== All heap blocks were freed -- no leaks are possible
+==1634==
+==1634== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+````
+
 
